@@ -1,8 +1,10 @@
-package com.example.todolist;
+package com.example.todolist.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.todolist.R;
 
 public class AdicionarTarefaActivity extends AppCompatActivity {
 
