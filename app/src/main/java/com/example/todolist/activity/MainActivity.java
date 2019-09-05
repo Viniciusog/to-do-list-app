@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.todolist.R;
 import com.example.todolist.adapter.TarefaAdapter;
+import com.example.todolist.helper.RecyclerItemClickListener;
 import com.example.todolist.model.Tarefa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -16,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,29 @@ public class MainActivity extends AppCompatActivity {
         //Configurar Recycler
         recyclerView = findViewById(R.id.recyclerView);
 
+        //Adicionar evento de clique
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Toast.makeText(getApplicationContext(), "ItemClick", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Toast.makeText(getApplicationContext(), "LongItemClick", Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        })
+        );
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Listar Tarefas
         Tarefa tarefa1 = new Tarefa();
-        tarefa1.setNomeTarefa("Ir ao mercado");
+        tarefa1.setNomeTarefa("Tarefa de inglês");
         listaTarefas.add(tarefa1);
 
         Tarefa tarefa2 = new Tarefa();
-        tarefa1.setNomeTarefa("Ir a feira");
+        tarefa2.setNomeTarefa("Concluir projeto de programação");
         listaTarefas.add(tarefa2);
 
         /*
