@@ -2,12 +2,14 @@ package com.example.todolist.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.todolist.model.Tarefa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TarefaDAO implements iTarefaDAO {
@@ -25,7 +27,7 @@ public class TarefaDAO implements iTarefaDAO {
 
     @Override
     public boolean salvar(Tarefa tarefa) {
-        
+
         ContentValues cv = new ContentValues();
         cv.put("nome", tarefa.getNomeTarefa());
         try {
@@ -50,6 +52,27 @@ public class TarefaDAO implements iTarefaDAO {
 
     @Override
     public List<Tarefa> listar() {
-        return null;
+        List<Tarefa> tarefas = new ArrayList<>();
+
+        String sql = "SELECT * FROM " +
+                DbHelper.TABELA_TAREFAS + " ;";
+
+        Cursor c = le.rawQuery(sql, null);
+
+
+
+        while (c.moveToNext()) {
+            Tarefa tarefa = new Tarefa();
+
+            Long id = c.getLong(c.getColumnIndex("id"));
+            String nomeTarefa = c.getString(c.getColumnIndex("nome"));
+
+            tarefa.setId(id);
+            tarefa.setNomeTarefa(nomeTarefa);
+
+            tarefas.add(tarefa);
+        }
+
+        return tarefas;
     }
 }

@@ -37,14 +37,22 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch ( item.getItemId() ){
+        switch (item.getItemId()) {
             case R.id.itemSalvar: {
-               //Executa ação para salvar o item
+                //Executa ação para salvar o item
                 TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
 
-                Tarefa tarefa = new Tarefa();
-                tarefa.setNomeTarefa("Ir ao mercado");
-                tarefaDAO.salvar( tarefa );
+                String nomeTarefa = editTarefa.getText().toString();
+
+                //Apenas adiciona a tarefa se o nome não for vazio
+                if (!nomeTarefa.isEmpty()) {
+                    Tarefa tarefa = new Tarefa();
+                    tarefa.setNomeTarefa(nomeTarefa);
+                    tarefaDAO.salvar(tarefa);
+                    finish();
+                }
+
+                break;
             }
         }
 

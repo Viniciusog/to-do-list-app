@@ -8,6 +8,7 @@ import com.example.todolist.R;
 import com.example.todolist.adapter.TarefaAdapter;
 import com.example.todolist.helper.DbHelper;
 import com.example.todolist.helper.RecyclerItemClickListener;
+import com.example.todolist.helper.TarefaDAO;
 import com.example.todolist.model.Tarefa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -77,13 +78,8 @@ public class MainActivity extends AppCompatActivity {
     public void carregarListaDeTarefas() {
 
         //Listar Tarefas
-        Tarefa tarefa1 = new Tarefa();
-        tarefa1.setNomeTarefa("Tarefa de inglês");
-        listaTarefas.add(tarefa1);
-
-        Tarefa tarefa2 = new Tarefa();
-        tarefa2.setNomeTarefa("Concluir projeto de programação");
-        listaTarefas.add(tarefa2);
+        TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+        listaTarefas = tarefaDAO.listar();
 
         /*
             Exibe lista de tarefas
