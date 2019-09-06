@@ -9,18 +9,28 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.todolist.R;
+import com.example.todolist.helper.TarefaDAO;
+import com.example.todolist.model.Tarefa;
+import com.google.android.material.textfield.TextInputEditText;
+
+import org.w3c.dom.Text;
 
 public class AdicionarTarefaActivity extends AppCompatActivity {
+
+    private TextInputEditText editTarefa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_tarefa);
+
+        editTarefa = findViewById(R.id.textTarefa);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_adicionar_tarefa, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -29,10 +39,12 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
 
         switch ( item.getItemId() ){
             case R.id.itemSalvar: {
-                //Executa a ação do botão de confirmar tarefa
-                Toast.makeText(AdicionarTarefaActivity.this,
-                        "Botão Confirmar Pressionado!",
-                        Toast.LENGTH_SHORT).show();
+               //Executa ação para salvar o item
+                TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+
+                Tarefa tarefa = new Tarefa();
+                tarefa.setNomeTarefa("Ir ao mercado");
+                tarefaDAO.salvar( tarefa );
             }
         }
 

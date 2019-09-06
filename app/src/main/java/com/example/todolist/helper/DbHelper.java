@@ -7,9 +7,9 @@ import android.util.Log;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    private static int VERSION = 1;
-    private static String NOME_DB = "DB_TAREFAS";
-    private static String TABELA_TAREFAS = "tarefas";
+    public static int VERSION = 1;
+    public static String NOME_DB = "DB_TAREFAS";
+    public static String TABELA_TAREFAS = "tarefas";
 
     public DbHelper(Context context) {
         super(context, NOME_DB, null, VERSION);
@@ -27,13 +27,21 @@ public class DbHelper extends SQLiteOpenHelper {
             db.execSQL(sql);
             Log.i("INFO DB", "Sucesso ao criar a tabela");
         } catch (Exception e) {
-            Log.i("INFO BR", "Erro ao criar a tabela " + e.getMessage());
+            Log.i("INFO DB", "Erro ao criar a tabela " + e.getMessage());
         }
     }
 
     //É usado mais de uma vez quando é necessário atualizar o aplicativo
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        String sql = "DROP TABLE IF EXISTS " + TABELA_TAREFAS + " ;";
 
+        try {
+            db.execSQL(sql);
+            onCreate(db);
+            Log.i("INFO DB", "Sucesso ao atualizar app");
+        } catch (Exception e) {
+            Log.i("INFO BR", "Erro ao atualizar app" + e.getMessage());
+        }
     }
 }
