@@ -26,6 +26,9 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_tarefa);
 
+        //Configurando titulo action bar
+        getSupportActionBar().setTitle("Tarefas");
+
         editTarefa = findViewById(R.id.textTarefa);
 
         //Recuperar tarefa caso seja edição
@@ -48,12 +51,13 @@ public class AdicionarTarefaActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.itemSalvar: {
-                //Executa ação para salvar o item
+
 
                 TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
 
                 //Editanto tarefa
                 if (tarefaAtual != null) {
+
                     String nomeTarefa = editTarefa.getText().toString();
                     //Edita tarefa apenas se o nome não for vazio
                     if(!nomeTarefa.isEmpty()){

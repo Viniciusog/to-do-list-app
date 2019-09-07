@@ -2,9 +2,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.todolist.activity.MainActivity">
+
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/itemColors"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:icon="@drawable/ic_cores_branco_24dp"
+        android:title="Colors"
+        app:showAsAction="always" />
 </menu>

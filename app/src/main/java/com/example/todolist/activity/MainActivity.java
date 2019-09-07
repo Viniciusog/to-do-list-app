@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Tarefas");
 
         //Configurar Recycler
         recyclerView = findViewById(R.id.recyclerView);
@@ -164,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.itemColors) {
+            Toast.makeText(getApplicationContext(), "Item click", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
