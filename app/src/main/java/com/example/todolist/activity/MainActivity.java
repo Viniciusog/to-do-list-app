@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.itemColors) {
             Toast.makeText(getApplicationContext(), "Item click", Toast.LENGTH_SHORT).show();
+            
         }
 
         return super.onOptionsItemSelected(item);
